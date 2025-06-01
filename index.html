@@ -743,114 +743,102 @@
             <button class="nav-btn" onclick="showSection('contact')">Contact</button>
         </div>
 
-        <div id="about" class="section active">
-  <div class="card">
-    <h2>About Me</h2>
-    <p>
-      I’m an independent researcher in Artificial Intelligence with a strong focus on neurosymbolic reasoning, interpretable models, and the intersection of symbolic logic and deep learning.<br>
-      My work explores how we can build robust, transparent, and generalizable AI systems by integrating neural networks with structured reasoning. I’m currently preparing research papers and contributing to open-source AI projects while building a strong portfolio for PhD applications in Computer Science.<br>
-      My long-term goal is to advance fundamental research in interpretable AI and contribute to the development of intelligent systems that are not only powerful but also trustworthy and explainable.
-    </p>
-  </div>
-</div>
-
-<div id="education" class="section">
-  <div class="card">
-    <h2>Education</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <h3>M.S. in Finance & Investment Management</h3>
-        <p><strong>University of Liverpool</strong> | 2022 - 2023</p>
-        <p>Thesis: "The Impact of Mergers & Acquisitions on Financial Performance"</p>
-      </div>
-      <div class="timeline-item">
-        <h3>BBA in Business Analytics</h3>
-        <p><strong>Garden City University</strong> | 2018 - 2021</p>
-      </div>
+        <!-- Sections Container -->
+<div class="sections-container">
+    <!-- About Section -->
+    <div id="about" class="section active">
+        <div class="card">
+            <h2>About Me</h2>
+            <p>I'm an independent researcher in Artificial Intelligence with a strong focus on neurosymbolic reasoning, interpretable models, and the intersection of symbolic logic and deep learning.</p>
+            <p>My work explores how we can build robust, transparent, and generalizable AI systems by integrating neural networks with structured reasoning.</p>
+        </div>
     </div>
-  </div>
-</div>
 
-<div id="cv" class="section">
-  <div class="card">
-    <h2>Curriculum Vitae</h2>
-    <div class="cv-preview">
-      <h3>📄 My Complete CV</h3>
-      <p>Download my complete curriculum vitae with detailed information about my education, research experience, publications, and achievements.</p>
-      <p><strong>Last Updated:</strong> <span id="cvLastUpdated">January 2025</span></p>
-      <a href="#" class="cv-download-btn" id="cvDownloadLink">
-        <span>📥</span> Download CV (PDF)
-      </a>
+    <!-- Education Section -->
+    <div id="education" class="section">
+        <div class="card">
+            <h2>Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>M.S. in Finance & Investment Management</h3>
+                    <p><strong>University of Liverpool</strong> | 2022 - 2023</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>BBA in Business Analytics</h3>
+                    <p><strong>Garden City University</strong> | 2018 - 2021</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<div id="research" class="section">
-  <div class="card">
-    <h2>Research Papers</h2>
-    <div class="paper-item">
-      <div class="paper-title">Sample Paper Title: A Comprehensive Study</div>
-      <div class="paper-meta">Authors: Abhishek Tiwari, Co-Author Name | Journal Name, 2024</div>
-      <p>Brief description of the paper and its contributions to the field.</p>
-      <div class="paper-links">
-        <a href="#" class="paper-link">PDF</a>
-        <a href="#" class="paper-link">DOI</a>
-      </div>
+    <!-- CV Section -->
+    <div id="cv" class="section">
+        <div class="card">
+            <h2>Curriculum Vitae</h2>
+            <div class="cv-preview">
+                <h3>📄 My Complete CV</h3>
+                <p>Download my complete curriculum vitae</p>
+                <a href="#" class="cv-download-btn">
+                    <span>📥</span> Download CV (PDF)
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<div id="projects" class="section">
-  <div class="card">
-    <h2>Projects</h2>
-    <div class="paper-item">
-      <div class="paper-title">Sample Project: Research Application</div>
-      <div class="paper-meta">Status: Ongoing | Started: 2024</div>
-      <p>Description of your project, its objectives, and current progress.</p>
-      <div class="paper-links">
-        <a href="#" class="paper-link">GitHub</a>
-        <a href="#" class="paper-link">Demo</a>
-      </div>
+    <!-- Research Section -->
+    <div id="research" class="section">
+        <div class="card">
+            <h2>Research Papers</h2>
+            <div class="paper-item">
+                <div class="paper-title">Your Research Paper Title</div>
+                <div class="paper-meta">Authors: Abhishek Tiwari | 2024</div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<div id="blogs" class="section">
-  <div class="card">
-    <h2>Blogs</h2>
-    <div class="blog-item">
-      <div class="blog-title">My First Blog Title</div>
-      <div class="blog-summary">A short summary or subject of the blog.</div>
-      <p>This is the main text or intro of your blog. You can expand this as needed.</p>
+    <!-- Projects Section -->
+    <div id="projects" class="section">
+        <div class="card">
+            <h2>Projects</h2>
+            <div class="paper-item">
+                <div class="paper-title">Your Project Title</div>
+                <div class="paper-meta">Status: Active</div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<div id="contact" class="section">
-  <div class="card">
-    <h2>Contact Me</h2>
-    <p><strong>Email:</strong> abhishekt282001@gmail.com</p>
-    <p><strong>Location:</strong> Liverpool, United Kingdom</p>
-    <form id="contactForm">
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required>
-      </div>
-      <div class="form-group">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-      </div>
-      <button type="submit" class="submit-btn">Send Message</button>
-    </form>
-  </div>
+    <!-- Blogs Section -->
+    <div id="blogs" class="section">
+        <div class="card">
+            <h2>Blogs</h2>
+            <div class="blog-item">
+                <div class="blog-title">Your Blog Title</div>
+                <p>Blog content goes here</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section">
+        <div class="card">
+            <h2>Contact Me</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
 </div>
 
         <!-- Admin Panel -->
@@ -858,7 +846,35 @@
         <div class="admin-panel" i
 
 <script>
-// Theme Toggle
+// Function to show/hide sections
+function showSection(sectionId) {
+    // Get all sections
+    const sections = document.querySelectorAll('.section');
+    
+    // Hide all sections first
+    sections.forEach(section => {
+        section.style.display = 'none';
+        section.classList.remove('active');
+    });
+    
+    // Show the selected section
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.style.display = 'block';
+        selectedSection.classList.add('active');
+    }
+    
+    // Update active state of navigation buttons
+    const navButtons = document.querySelectorAll('.nav-btn');
+    navButtons.forEach(button => {
+        button.classList.remove('active');
+        if (button.getAttribute('onclick').includes(sectionId)) {
+            button.classList.add('active');
+        }
+    });
+}
+
+// Theme toggle function
 function toggleTheme() {
     const body = document.body;
     const current = body.getAttribute('data-theme');
@@ -867,38 +883,14 @@ function toggleTheme() {
     localStorage.setItem('theme', next);
 }
 
-// Section Navigation
-function showSection(sectionId) {
-    // Hide all sections
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        section.classList.remove('active');
-    });
-    
-    // Show selected section
-    const selectedSection = document.getElementById(sectionId);
-    if (selectedSection) {
-        selectedSection.classList.add('active');
-    }
-    
-    // Update active button
-    const buttons = document.querySelectorAll('.nav-btn');
-    buttons.forEach(button => {
-        button.classList.remove('active');
-        if (button.getAttribute('onclick').includes(sectionId)) {
-            button.classList.add('active');
-        }
-    });
-}
-
-// On page load
+// When the page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Set saved theme or default to light
+    // Show the About section by default
+    showSection('about');
+    
+    // Set the saved theme or default to light
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.body.setAttribute('data-theme', savedTheme);
-    
-    // Show default section (about)
-    showSection('about');
 });
 </script>
 </body>

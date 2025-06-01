@@ -679,11 +679,37 @@
         }
 
         // Section Navigation
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
+function showSection(sectionId) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Show the selected section
+    const target = document.getElementById(sectionId);
+    if (target) {
+        target.classList.add('active');
+    }
+
+    // Update nav button active state
+    const navBtns = document.querySelectorAll('.nav-btn');
+    navBtns.forEach(btn => {
+        if (btn.getAttribute('data-section') === sectionId) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
+// Add click listeners to nav buttons
+const navBtns = document.querySelectorAll('.nav-btn');
+navBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const section = btn.getAttribute('data-section');
+        showSection(section);
+    });
+});
             
             //

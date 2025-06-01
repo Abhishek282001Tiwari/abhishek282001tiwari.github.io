@@ -778,9 +778,13 @@
             <div class="cv-preview">
                 <h3>📄 My Complete CV</h3>
                 <p>Download my complete curriculum vitae</p>
-                <a href="#" class="cv-download-btn">
-                    <span>📥</span> Download CV (PDF)
-                </a>
+                <iframe src="cv.pdf" width="100%" height="600px" style="border-radius: 12px; border: 1px solid var(--border-color);"></iframe>
+
+<br><br>
+
+<a href="cv.pdf" class="cv-download-btn" download>
+  <span>📥</span> Download CV (PDF)
+</a>
             </div>
         </div>
     </div>
@@ -888,15 +892,21 @@ function toggleTheme() {
 }
 
 // On page load
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Page loaded'); // Debug log
-    
-    // Show about section by default
-    showSection('about');
-    
-    // Set saved theme
+document.addEventListener('DOMContentLoaded', function () {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.body.setAttribute('data-theme', savedTheme);
+
+    const hash = window.location.hash?.substring(1) || 'about';
+    showSection(hash);
+
+    // Update URL hash on nav click
+    const navButtons = document.querySelectorAll('.nav-btn');
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+            window.location.hash = id;
+        });
+    });
 });
 </script>
 </body>

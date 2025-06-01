@@ -858,19 +858,49 @@
         <div class="admin-panel" i
 
 <script>
-// Toggles between light and dark mode
+// Theme Toggle
 function toggleTheme() {
-  const body = document.body;
-  const current = body.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
-  body.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
+    const body = document.body;
+    const current = body.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
 }
 
-// On page load, set saved theme or default to light
+// Section Navigation
+function showSection(sectionId) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Show selected section
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.classList.add('active');
+    }
+    
+    // Update active button
+    const buttons = document.querySelectorAll('.nav-btn');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+        if (button.getAttribute('onclick').includes(sectionId)) {
+            button.classList.add('active');
+        }
+    });
+}
+
+// On page load
 document.addEventListener('DOMContentLoaded', function() {
-  const saved = localStorage.getItem('theme') || 'light';
-  document.body.setAttribute('data-theme', saved);
+    // Set saved theme or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.body.setAttribute('data-theme', savedTheme);
+    
+    // Show default section (about)
+    showSection('about');
 });
 </script>
+</body>
+</html>
 

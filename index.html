@@ -476,6 +476,7 @@ Collaborating with Professors from IITs</p>
             <button class="nav-btn" onclick="showSection('cv')">CV</button>
             <button class="nav-btn" onclick="showSection('research')">Research</button>
             <button class="nav-btn" onclick="showSection('projects')">Projects</button>
+            <button class="nav-btn" onclick="showSection('blogs')">Blogs</button>
             <button class="nav-btn" onclick="showSection('contact')">Contact</button>
         </div>
 
@@ -619,7 +620,36 @@ Performance"</p>
                 </div>
             </div>
         </div>
-
+<!-- Add this new section after your Projects section, before Upload/Contact -->
+<div id="blogs" class="section">
+    <div class="card">
+        <h2>Blogs</h2>
+        <div id="blogsList">
+            <!-- Blog boxes will be added here -->
+            <!-- Example blog item: -->
+            <div class="paper-item blog-item">
+                <div class="blog-title" style="font-weight:bold; font-size:1.2em;">My First Blog Title</div>
+                <div class="blog-summary" style="font-size:0.95em; color:var(--accent-color); margin-bottom:8px;">A short summary or subject of the blog.</div>
+                <p>
+                    This is the main text or intro of your blog. You can expand this as needed.
+                </p>
+                <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+                    <button class="like-btn" onclick="likeBlog(this)">👍 <span>0</span></button>
+                    <button class="dislike-btn" onclick="dislikeBlog(this)">👎 <span>0</span></button>
+                </div>
+                <div class="blog-comments" style="margin-top:10px;">
+                    <h4 style="margin-bottom:5px; font-size:1em;">Comments</h4>
+                    <div class="comments-list"></div>
+                    <form class="comment-form" onsubmit="return addComment(event, this)">
+                        <input type="text" placeholder="Your comment..." required style="padding:6px; border-radius:6px; border:1px solid var(--border-color); width:70%;">
+                        <button type="submit" style="padding:6px 12px; border-radius:6px; background:var(--accent-color); color:white; border:none;">Post</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Add more blog-item divs for more blogs -->
+        </div>
+    </div>
+</div>
         <!-- Upload Section (Hidden by default) -->
         <div id="upload" class="section" style="display: none;">
             <div class="card">
@@ -934,6 +964,49 @@ Performance"</p>
                 }
             });
         });
+    </script>
+        ...
+    <!-- Your last section, e.g., Contact, ends here -->
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            // ...existing code...
+        }
+
+        // ...[LOTS OF EXISTING JAVASCRIPT CODE HERE]...
+
+        // ==== Add your blog JS code below (or anywhere inside this script block) ====
+
+        // Like/Dislike functionality for blogs
+        function likeBlog(btn) {
+            let count = btn.querySelector('span');
+            count.textContent = parseInt(count.textContent) + 1;
+        }
+        function dislikeBlog(btn) {
+            let count = btn.querySelector('span');
+            count.textContent = parseInt(count.textContent) + 1;
+        }
+
+        // Comment functionality for blogs
+        function addComment(event, form) {
+            event.preventDefault();
+            const input = form.querySelector('input');
+            const commentText = input.value.trim();
+            if (commentText) {
+                const commentsList = form.parentElement.querySelector('.comments-list');
+                const commentDiv = document.createElement('div');
+                commentDiv.textContent = commentText;
+                commentDiv.style.marginBottom = "6px";
+                commentsList.appendChild(commentDiv);
+                input.value = '';
+            }
+            return false;
+        }
+
+        // ==== End of your blog JS code ====
+
     </script>
 </body>
 </html>

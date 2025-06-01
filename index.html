@@ -846,13 +846,15 @@
         <div class="admin-panel" i
 
 <script>
-// Function to show/hide sections
+// For debugging - remove later
+console.log('JavaScript loaded');
+
+// Function to show sections
 function showSection(sectionId) {
-    // Get all sections
-    const sections = document.querySelectorAll('.section');
+    console.log('Showing section:', sectionId); // Debug log
     
     // Hide all sections first
-    sections.forEach(section => {
+    document.querySelectorAll('.section').forEach(section => {
         section.style.display = 'none';
         section.classList.remove('active');
     });
@@ -860,16 +862,18 @@ function showSection(sectionId) {
     // Show the selected section
     const selectedSection = document.getElementById(sectionId);
     if (selectedSection) {
+        console.log('Found section:', sectionId); // Debug log
         selectedSection.style.display = 'block';
         selectedSection.classList.add('active');
+    } else {
+        console.log('Section not found:', sectionId); // Debug log
     }
     
-    // Update active state of navigation buttons
-    const navButtons = document.querySelectorAll('.nav-btn');
-    navButtons.forEach(button => {
-        button.classList.remove('active');
-        if (button.getAttribute('onclick').includes(sectionId)) {
-            button.classList.add('active');
+    // Update active button
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase() === sectionId.toLowerCase()) {
+            btn.classList.add('active');
         }
     });
 }
@@ -883,12 +887,14 @@ function toggleTheme() {
     localStorage.setItem('theme', next);
 }
 
-// When the page loads
+// On page load
 document.addEventListener('DOMContentLoaded', function() {
-    // Show the About section by default
+    console.log('Page loaded'); // Debug log
+    
+    // Show about section by default
     showSection('about');
     
-    // Set the saved theme or default to light
+    // Set saved theme
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.body.setAttribute('data-theme', savedTheme);
 });

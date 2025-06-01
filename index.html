@@ -1,1136 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhishek Tiwari | Personal Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-
-        .section {
-    display: none;
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.4s, transform 0.4s;
-}
-.section.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.nav-btn {
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s, box-shadow 0.3s;
-    font-size: 16px;
-}
-.nav-btn:hover, .nav-btn.active {
-    background: var(--primary-color);
-    color: var(--bg-color);
-    box-shadow: var(--hover-glow);
-    transform: scale(1.08);
-}
-
-.about-fade {
-    animation: fadeInQuick 0.1s forwards;
-}
-@keyframes fadeInQuick {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-        
-        .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 20px;
-}
-.social-link {
-    background: var(--icon-bg);
-    border-radius: 50%;
-    box-shadow: 0 0 0 transparent;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    color: var(--primary-color);
-    transition: box-shadow 0.3s, color 0.3s, transform 0.3s;
-    font-size: 1.7em;
-    cursor: pointer;
-}
-.social-link:hover, .social-link:focus {
-    color: var(--icon-hover);
-    box-shadow: var(--hover-glow);
-    transform: scale(1.12) translateY(-4px);
-}
-.icon-bg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-        
-        .card h2, .paper-item h2, .blog-item h2 {
-    color: var(--primary-color);
-    font-size: 2em;
-    font-weight: 700;
-    margin-bottom: 12px;
-    letter-spacing: 0.03em;
-    text-shadow: 0 2px 16px #7c3aed33;
-}
-
-.card h3, .paper-item h3, .blog-item h3 {
-    color: var(--accent-color);
-    font-size: 1.3em;
-    font-weight: 600;
-    margin-bottom: 8px;
-    letter-spacing: 0.02em;
-}
-        :root {
-  --bg-color: #181625;
-  --card-bg: #232136;
-  --primary-color: #a78bfa; /* Soft purple */
-  --accent-color: #7c3aed;  /* Vivid purple */
-  --text-color: #e0e0e0;
-  --fade-color: #2a273f;
-  --hover-glow: 0 4px 24px #7c3aed99;
-  --icon-bg: #26233a;
-  --icon-hover: #7c3aed;
-}
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --card-bg: #f8f9fa;
-            --border-color: #e9ecef;
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --hover-color: #ecf0f1;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #1a1a1a;
-            --text-color: #e0e0e0;
-            --card-bg: #2d2d2d;
-            --border-color: #404040;
-            --primary-color: #34495e;
-            --accent-color: #5dade2;
-            --hover-color: #3a3a3a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-     body {
-    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
-    color: var(--text-color);
-    background: linear-gradient(135deg, #181625 0%, #232136 100%);
-    transition: background 0.4s, color 0.4s;
-}
-
-* {
-    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-}
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header */
-        .header {
-            background: var(--card-bg);
-            padding: 40px 0;
-            text-align: center;
-            margin-bottom: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            border: 4px solid var(--accent-color);
-            object-fit: cover;
-        }
-
-        .header h1 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-
-        .header p {
-            font-size: 1.2em;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        /* Navigation */
-        .nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
-
-        .nav-btn:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .nav-btn.active {
-            background: var(--primary-color);
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary-color);
-        }
-
-        /* Sections */
-        .section {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-color);
-        }
-
-        .card h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-
-        .card h3 {
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-
-        /* Research Papers */
-        .paper-item {
-            background: var(--hover-color);
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .paper-title {
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .paper-meta {
-            color: var(--text-color);
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-
-        .paper-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .paper-link {
-            padding: 5px 12px;
-            background: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 15px;
-            font-size: 0.8em;
-            transition: all 0.3s ease;
-        }
-
-        .paper-link:hover {
-            background: var(--primary-color);
-        }
-
-        /* Upload Section */
-        .upload-area {
-            border: 2px dashed var(--border-color);
-            padding: 40px;
-            text-align: center;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .upload-area:hover {
-            border-color: var(--accent-color);
-            background: var(--hover-color);
-        }
-
-        .upload-btn {
-            background: var(--accent-color);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .upload-btn:hover {
-            background: var(--primary-color);
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        /* Contact Form */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .submit-btn {
-            background: var(--accent-color);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: var(--primary-color);
-        }
-
-        /* Education Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--accent-color);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-            padding: 15px;
-            background: var(--hover-color);
-            border-radius: 8px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -23px;
-            top: 20px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent-color);
-        }
-
-        /* Admin Panel Styles */
-        .admin-panel {
-            position: fixed;
-            top: 70px;
-            right: 20px;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 20px;
-            width: 300px;
-            display: none;
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        .admin-panel.show {
-            display: block;
-        }
-
-        .admin-toggle {
-            position: fixed;
-            top: 70px;
-            right: 20px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-            z-index: 1001;
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            background: var(--bg-color);
-            color: var(--text-color);
-        }
-
-        .admin-content {
-            display: none;
-        }
-
-        .admin-content.show {
-            display: block;
-        }
-
-        /* Download Button Styles */
-        .download-btn {
-            background: #27ae60;
-            color: white;
-            padding: 8px 15px;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.85em;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .download-btn:hover {
-            background: #219a52;
-            transform: translateY(-1px);
-        }
-
-        /* CV Section Styles */
-        .cv-preview {
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            background: var(--hover-color);
-            margin-bottom: 20px;
-        }
-
-        .cv-download-btn {
-            background: var(--accent-color);
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 18px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cv-download-btn:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .nav {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhishek Tiwari | Personal Website</title>
+  <style>
+    :root {
+      --bg-color: #fff;
+      --text-color: #222;
+      --card-bg: #f8f9fa;
+      --primary-color: #2c3e50;
+      --accent-color: #3498db;
+      --link-color: #3498db;
+      --nav-bg: #21243b;
+    }
+    [data-theme="dark"] {
+      --bg-color: #181a21;
+      --text-color: #e0e0e0;
+      --card-bg: #23253a;
+      --primary-color: #dce6f7;
+      --accent-color: #65aaff;
+      --link-color: #65aaff;
+      --nav-bg: #191b25;
+    }
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+    }
+    .header {
+      background: var(--card-bg);
+      text-align: center;
+      padding: 40px 0 30px 0;
+      border-radius: 16px;
+      margin: 40px 0 24px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .profile-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid var(--accent-color);
+      margin-bottom: 18px;
+      object-fit: cover;
+    }
+    .header h1 {
+      font-size: 2.6em;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+    }
+    .header p {
+      font-size: 1.15em;
+      color: var(--accent-color);
+      margin-bottom: 8px;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .nav-btn {
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 22px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--primary-color);
+    }
+    .card {
+      background: var(--card-bg);
+      max-width: 900px;
+      margin: 36px auto;
+      padding: 32px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .social-links {
+      margin-top: 18px;
+      text-align: center;
+    }
+    .social-link {
+      margin: 0 10px;
+      color: var(--link-color);
+      text-decoration: none;
+      font-size: 1.35em;
+      transition: color 0.2s;
+    }
+    .social-link:hover {
+      color: var(--primary-color);
+    }
+  </style>
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+  <button class="theme-toggle" onclick="toggleTheme()" style="position:fixed;top:18px;right:18px;padding:8px 14px;border-radius:20px;background:var(--accent-color);color:#fff;border:none;cursor:pointer;z-index:10;">🌓</button>
+  <div class="header">
+    <img src="./profile.jpg" alt="Profile Picture" class="profile-img">
+    <h1>Abhishek Tiwari</h1>
+    <p>Aspiring PhD Student in Computer Science · Independent AI Researcher</p>
+    <p>Specializing in Neurosymbolic Reasoning & Interpretable Machine Learning Collaborating with Professors from IITs</p>
+  </div>
 
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <img src="./profile.jpg" alt="Profile Picture" class="profile-img" id="profileImg">
-            <h1 id="userName" class="userName">Abhishek Tiwari</h1>
-            <p id="userTitle">Aspiring PhD Student in Computer Science · Independent AI Researcher</p>
-            <p id="userInstitution">Specializing in Neurosymbolic Reasoning & Interpretable Machine Learning
-Collaborating with Professors from IITs</p>
-        </div>
+  <div class="nav">
+    <button class="nav-btn">About</button>
+    <button class="nav-btn">Education</button>
+    <button class="nav-btn">CV</button>
+    <button class="nav-btn">Research</button>
+    <button class="nav-btn">Projects</button>
+    <button class="nav-btn">Blogs</button>
+    <button class="nav-btn">Contact</button>
+  </div>
 
-        <!-- Navigation -->
-        <div class="nav">
-            <button class="nav-btn active" onclick="showSection('about')">About</button>
-            <button class="nav-btn" onclick="showSection('education')">Education</button>
-            <button class="nav-btn" onclick="showSection('cv')">CV</button>
-            <button class="nav-btn" onclick="showSection('research')">Research</button>
-            <button class="nav-btn" onclick="showSection('projects')">Projects</button>
-            <button class="nav-btn" onclick="showSection('blogs')">Blogs</button>
-            <button class="nav-btn" onclick="showSection('contact')">Contact</button>
-        </div>
+  <div class="card">
+    <h2>About Me</h2>
+    <p>
+      I’m an independent researcher in Artificial Intelligence with a strong focus on neurosymbolic reasoning, interpretable models, and the intersection of symbolic logic and deep learning.<br>
+      My work explores how we can build robust, transparent, and generalizable AI systems by integrating neural networks with structured reasoning. I’m currently preparing research papers and contributing to open-source AI projects while building a strong portfolio for PhD applications in Computer Science.<br>
+      My long-term goal is to advance fundamental research in interpretable AI and contribute to the development of intelligent systems that are not only powerful but also trustworthy and explainable.
+    </p>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/abhishek282001" class="social-link" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Abhishek282001Tiwari" class="social-link" target="_blank">GitHub</a>
+      <a href="https://twitter.com/abhishekt282001" class="social-link" target="_blank">Twitter</a>
+    </div>
+  </div>
 
-        <!-- Admin Panel -->
-        <button class="admin-toggle" onclick="toggleAdmin()">⚙️</button>
-        <div class="admin-panel" id="adminPanel">
-            <div class="admin-login">
-                <h4>Admin Access</h4>
-                <input type="password" class="password-input" id="adminPassword" placeholder="Enter password">
-                <button onclick="checkPassword()" class="upload-btn" style="width: 100%; margin-top: 10px;">Login</button>
-            </div>
-            <div class="admin-content" id="adminContent">
-                <h4>Admin Panel</h4>
-                <button onclick="showUploadSection()" class="upload-btn" style="width: 100%; margin-bottom: 10px;">Manage Content</button>
-                <button onclick="toggleAdmin()" class="nav-btn" style="width: 100%;">Close</button>
-            </div>
-        </div>
-
-        <!-- About Section -->
-        <div id="about" class="section active">
-            <div class="card">
-                <h2>About Me</h2>
-                <p id="aboutText" class="about-fade">
-</p>
-  I’m an independent researcher in Artificial Intelligence with a strong focus on neurosymbolic reasoning, interpretable models, and the intersection of symbolic logic and deep learning.
-</p>            
-<p>
-  My work explores how we can build robust, transparent, and generalizable AI systems by integrating neural networks with structured reasoning. I’m currently preparing research papers and contributing to open-source AI projects while building a strong portfolio for PhD applications in Computer Science.
-</p>             
-<p>
-  My long-term goal is to advance fundamental research in interpretable AI and contribute to the development of intelligent systems that are not only powerful but also trustworthy and explainable.
-</p>
-             <div class="social-links">
-    <!-- LinkedIn -->
-    <a href="https://linkedin.com/in/abhishek282001" class="social-link" target="_blank" aria-label="LinkedIn">
-        <span class="icon-bg">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M4.98 3.5C3.33 3.5 2 4.85 2 6.48c0 1.62 1.33 2.97 2.98 2.97h.02C6.65 9.45 8 8.1 8 6.48 8 4.85 6.65 3.5 4.98 3.5zM2.4 21.5h5.16V9.89H2.4V21.5zM9.34 9.89V21.5h5.16v-6.2c0-1.48.03-3.39-2.07-3.39-2.07 0-2.39 1.62-2.39 3.29v6.3h5.16V9.89h-5.16z" fill="currentColor"/>
-            </svg>
-        </span>
-    </a>
-    <!-- GitHub -->
-    <a href="https://github.com/Abhishek282001Tiwari" class="social-link" target="_blank" aria-label="GitHub">
-        <span class="icon-bg">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.61-3.37-1.37-3.37-1.37-.46-1.19-1.12-1.51-1.12-1.51-.92-.64.07-.63.07-.63 1.02.07 1.56 1.07 1.56 1.07 .9 1.58 2.36 1.12 2.94.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.15-4.56-5.11 0-1.13.38-2.06 1.02-2.79-.1-.25-.44-1.27.09-2.65 0 0 .84-.28 2.75 1.07a9.2 9.2 0 0 1 2.5-.34c.85.004 1.71.114 2.51.335 1.91-1.35 2.75-1.07 2.75-1.07 .53 1.38.19 2.4.09 2.65 .64.73 1.02 1.66 1.02 2.79 0 3.97-2.34 4.84-4.57 5.1.36.31.69.93.69 1.87 0 1.35-.01 2.43-.01 2.76 0 .26.18.58.69.48 3.97-1.35 6.84-5.17 6.84-9.67C22 6.58 17.52 2 12 2z" fill="currentColor"/>
-            </svg>
-        </span>
-    </a>
-    <!-- Twitter -->
-    <a href="https://twitter.com/yourtwitter" class="social-link" target="_blank" aria-label="Twitter">
-        <span class="icon-bg">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path d="M22.46 6c-.79.35-1.64.58-2.53.69A4.19 4.19 0 0 0 21.85 4.6c-.81.48-1.71.83-2.67 1.02a4.15 4.15 0 0 0-7.07 3.77A11.79 11.79 0 0 1 3.15 5.1a4.13 4.13 0 0 0-.56 2.09c0 1.44.73 2.71 1.85 3.45-.68-.02-1.32-.21-1.88-.52v.05c0 2.02 1.45 3.71 3.38 4.09-.35.1-.72.16-1.1.16-.27 0-.53-.03-.79-.07.53 1.65 2.08 2.85 3.91 2.88A8.34 8.34 0 0 1 2 19.54 11.77 11.77 0 0 0 8.29 21.5c7.55 0 11.68-6.36 11.68-11.89 0-.18-.01-.35-.02-.53.8-.59 1.5-1.32 2.05-2.08z" fill="currentColor"/>
-            </svg>
-        </span>
-    </a>
+    <div id="about" class="section active">
+  <div class="card">
+    <h2>About Me</h2>
+    <p>
+      I’m an independent researcher in Artificial Intelligence with a strong focus on neurosymbolic reasoning, interpretable models, and the intersection of symbolic logic and deep learning.
+      <br>
+      My work explores how we can build robust, transparent, and generalizable AI systems by integrating neural networks with structured reasoning. I’m currently preparing research papers and contributing to open-source AI projects while building a strong portfolio for PhD applications in Computer Science.
+      <br>
+      My long-term goal is to advance fundamental research in interpretable AI and contribute to the development of intelligent systems that are not only powerful but also trustworthy and explainable.
+    </p>
+  </div>
 </div>
 
-        <!-- Education Section -->
-        <div id="education" class="section">
-            <div class="card">
-                <h2>Education</h2>
-                    <div class="timeline-item">
-                        <h3>M.S. in Finance & Investment Management </h3>
-                        <p><strong>University of Liverpool</strong> | 2022 - 2023 </p>
-                        <p>Thesis: "The Impact of Mergers & Acquisitions on Financial
-Performance"</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>BBA in Business Analytics </h3>
-                        <p><strong>Garden City University</strong> | 2018 - 2021 </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="education" class="section">
+  <div class="card">
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>M.S. in Finance & Investment Management</h3>
+        <p><strong>University of Liverpool</strong> | 2022 - 2023</p>
+        <p>Thesis: "The Impact of Mergers & Acquisitions on Financial Performance"</p>
+      </div>
+      <div class="timeline-item">
+        <h3>BBA in Business Analytics</h3>
+        <p><strong>Garden City University</strong> | 2018 - 2021</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <!-- CV Section -->
-        <div id="cv" class="section">
-            <div class="card">
-                <h2>Curriculum Vitae</h2>
-                <div class="cv-preview">
-                    <h3>📄 My Complete CV</h3>
-                    <p>Download my complete curriculum vitae with detailed information about my education, research experience, publications, and achievements.</p>
-                    <p><strong>Last Updated:</strong> <span id="cvLastUpdated">January 2025</span></p>
-                    <br>
-                    <a href="#" class="cv-download-btn" id="cvDownloadLink">
-                        <span>📥</span> Download CV (PDF)
-                    </a>
-                </div>
-                
-                <div style="margin-top: 30px;">
-                    <h3>Quick Overview</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-                        <div style="background: var(--hover-color); padding: 20px; border-radius: 8px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">🎓 Education</h4>
-                            <p>Ph.D. in [Your Field]<br>
-                            [University Name]</p>
-                        </div>
-                        <div style="background: var(--hover-color); padding: 20px; border-radius: 8px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">📊 Research Focus</h4>
-                            <p>[Your research areas and specializations]</p>
-                        </div>
-                        <div style="background: var(--hover-color); padding: 20px; border-radius: 8px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">📝 Publications</h4>
-                            <p id="publicationCount">5+ peer-reviewed papers</p>
-                        </div>
-                        <div style="background: var(--hover-color); padding: 20px; border-radius: 8px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">🏆 Experience</h4>
-                            <p>[Years] of research experience</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="research" class="section">
-            <div class="card">
-                <h2>Research Papers</h2>
-                <div id="papersList">
-                    <div class="paper-item">
-                        <div class="paper-title">Sample Paper Title: A Comprehensive Study</div>
-                        <div class="paper-meta">Authors: [Your Name], Co-Author Name | Journal Name, 2024</div>
-                        <p>Brief description of the paper and its contributions to the field.</p>
-                        <div class="paper-links">
-                            <a href="#" class="paper-link">PDF</a>
-                            <a href="#" class="paper-link">DOI</a>
-                            <a href="#" class="paper-link">BibTeX</a>
-                            <a href="data:application/pdf;base64," class="download-btn" download="sample-paper.pdf">
-                                <span>📥</span> Download
-                            </a>
-                        </div>
-                    </div>
-                    <!-- More papers will be added here -->
-                </div>
-            </div>
-        </div>
+<div id="cv" class="section">
+  <div class="card">
+    <h2>Curriculum Vitae</h2>
+    <div class="cv-preview">
+      <h3>📄 My Complete CV</h3>
+      <p>Download my complete curriculum vitae with detailed information about my education, research experience, publications, and achievements.</p>
+      <p><strong>Last Updated:</strong> <span id="cvLastUpdated">January 2025</span></p>
+      <a href="#" class="cv-download-btn" id="cvDownloadLink">
+        <span>📥</span> Download CV (PDF)
+      </a>
+    </div>
+  </div>
+</div>
 
-        <!-- Projects Section -->
-        <div id="projects" class="section">
-            <div class="card">
-                <h2>Projects</h2>
-                <div id="projectsList">
-                    <div class="paper-item">
-                        <div class="paper-title">Sample Project: Research Application</div>
-                        <div class="paper-meta">Status: Ongoing | Started: 2024</div>
-                        <p>Description of your project, its objectives, and current progress.</p>
-                        <div class="paper-links">
-                            <a href="#" class="paper-link">GitHub</a>
-                            <a href="#" class="paper-link">Demo</a>
-                            <a href="#" class="paper-link">Documentation</a>
-                            <a href="data:application/pdf;base64," class="download-btn" download="sample-project.pdf">
-                                <span>📥</span> Download
-                            </a>
-                        </div>
-                    </div>
-                    <!-- More projects will be added here -->
-                </div>
-            </div>
-        </div>
-<!-- Add this new section after your Projects section, before Upload/Contact -->
+<div id="research" class="section">
+  <div class="card">
+    <h2>Research Papers</h2>
+    <div class="paper-item">
+      <div class="paper-title">Sample Paper Title: A Comprehensive Study</div>
+      <div class="paper-meta">Authors: Abhishek Tiwari, Co-Author Name | Journal Name, 2024</div>
+      <p>Brief description of the paper and its contributions to the field.</p>
+      <div class="paper-links">
+        <a href="#" class="paper-link">PDF</a>
+        <a href="#" class="paper-link">DOI</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="projects" class="section">
+  <div class="card">
+    <h2>Projects</h2>
+    <div class="paper-item">
+      <div class="paper-title">Sample Project: Research Application</div>
+      <div class="paper-meta">Status: Ongoing | Started: 2024</div>
+      <p>Description of your project, its objectives, and current progress.</p>
+      <div class="paper-links">
+        <a href="#" class="paper-link">GitHub</a>
+        <a href="#" class="paper-link">Demo</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="blogs" class="section">
-    <div class="card">
-        <h2>Blogs</h2>
-        <div id="blogsList">
-            <!-- Blog boxes will be added here -->
-            <!-- Example blog item: -->
-            <div class="paper-item blog-item">
-                <div class="blog-title" style="font-weight:bold; font-size:1.2em;">My First Blog Title</div>
-                <div class="blog-summary" style="font-size:0.95em; color:var(--accent-color); margin-bottom:8px;">A short summary or subject of the blog.</div>
-                <p>
-                    This is the main text or intro of your blog. You can expand this as needed.
-                </p>
-                <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
-                    <button class="like-btn" onclick="likeBlog(this)">👍 <span>0</span></button>
-                    <button class="dislike-btn" onclick="dislikeBlog(this)">👎 <span>0</span></button>
-                </div>
-                <div class="blog-comments" style="margin-top:10px;">
-                    <h4 style="margin-bottom:5px; font-size:1em;">Comments</h4>
-                    <div class="comments-list"></div>
-                    <form class="comment-form" onsubmit="return addComment(event, this)">
-                        <input type="text" placeholder="Your comment..." required style="padding:6px; border-radius:6px; border:1px solid var(--border-color); width:70%;">
-                        <button type="submit" style="padding:6px 12px; border-radius:6px; background:var(--accent-color); color:white; border:none;">Post</button>
-                    </form>
-                </div>
-            </div>
-            <!-- Add more blog-item divs for more blogs -->
-        </div>
+  <div class="card">
+    <h2>Blogs</h2>
+    <div class="blog-item">
+      <div class="blog-title">My First Blog Title</div>
+      <div class="blog-summary">A short summary or subject of the blog.</div>
+      <p>This is the main text or intro of your blog. You can expand this as needed.</p>
     </div>
+  </div>
 </div>
-        <!-- Upload Section (Hidden by default) -->
-        <div id="upload" class="section" style="display: none;">
-            <div class="card">
-                <h2>🔒 Content Management (Admin Only)</h2>
-                <p style="color: var(--accent-color); margin-bottom: 20px;">This section is only accessible to you as the website owner.</p>
-                
-                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <p>📄 Click here to upload papers, projects, or documents</p>
-                    <button class="upload-btn">Choose Files</button>
-                    <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx" style="display: none;" onchange="handleFileUpload(event)">
-                </div>
-                
-                <div style="margin-top: 30px;">
-                    <h3>Quick Add Form</h3>
-                    <form id="quickAddForm">
-                        <div class="form-group">
-                            <label>Type:</label>
-                            <select id="contentType" style="width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-color);">
-                                <option value="paper">Research Paper</option>
-                                <option value="project">Project</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Title:</label>
-                            <input type="text" id="contentTitle" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Authors/Details:</label>
-                            <input type="text" id="contentAuthors" placeholder="Authors, Journal, Year">
-                        </div>
-                        <div class="form-group">
-                            <label>Description:</label>
-                            <textarea id="contentDescription" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>PDF File:</label>
-                            <input type="file" id="contentPDF" accept=".pdf">
-                        </div>
-                        <div class="form-group">
-                            <label>Additional Links (comma-separated):</label>
-                            <input type="text" id="contentLinks" placeholder="DOI, GitHub, etc.">
-                        </div>
-                        <button type="submit" class="submit-btn">Add Content</button>
-                    </form>
-                </div>
 
-                <div style="margin-top: 30px;">
-                    <h3>Update CV</h3>
-                    <form id="cvUpdateForm">
-                        <div class="form-group">
-                            <label>Upload New CV:</label>
-                            <input type="file" id="cvFile" accept=".pdf" required>
-                        </div>
-                        <button type="submit" class="submit-btn">Update CV</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div id="contact" class="section">
+  <div class="card">
+    <h2>Contact Me</h2>
+    <p><strong>Email:</strong> abhishekt282001@gmail.com</p>
+    <p><strong>Location:</strong> Liverpool, United Kingdom</p>
+    <form id="contactForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </div>
+</div>
 
-        <!-- Contact Section -->
-        <div id="contact" class="section">
-            <div class="card">
-                <h2>Contact Me</h2>
-                
-                <div style="margin-bottom: 30px;">
-                    <h3>Contact Information</h3>
-                    <p><strong>Email:</strong> <span id="contactEmail">abhishekt282001@gmail.com</span></p>
-                    <p><strong>Location:</strong> <span id="contactAddress">Liverpool, United Kingdom</span></p>
-                </div>
+  <!-- Repeat the .card structure for Education, CV, Research, Projects, Blogs, Contact with your content -->
 
-                <h3>Send Message</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject:</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Theme toggle functionality
-        function toggleTheme() {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? '' : 'dark';
-            
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        }
-
-        // Load saved theme on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.body.setAttribute('data-theme', savedTheme);
-            }
-        });
-
-        // Admin functionality
-        let isAdminLoggedIn = false;
-        const adminPassword = "tiwari@abhishek282001"; // Change this to your preferred password
-
-        function toggleAdmin() {
-            const panel = document.getElementById('adminPanel');
-            panel.classList.toggle('show');
-        }
-
-        function checkPassword() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === adminPassword) {
-                isAdminLoggedIn = true;
-                document.querySelector('.admin-login').style.display = 'none';
-                document.getElementById('adminContent').classList.add('show');
-                alert('Admin access granted!');
-            } else {
-                alert('Incorrect password!');
-            }
-        }
-
-        function showUploadSection() {
-            if (isAdminLoggedIn) {
-                showSectionDirect('upload');
-                toggleAdmin();
-            }
-        }
-
-        function showSectionDirect(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(sectionId).classList.add('active');
-            document.getElementById(sectionId).style.display = 'block';
-        }
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Remove active class from all nav buttons
-            const navBtns = document.querySelectorAll('.nav-btn');
-            navBtns.forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-        }
-
-        // File upload handler
-        function handleFileUpload(event) {
-            const files = event.target.files;
-            if (files.length > 0) {
-                let fileNames = [];
-                for (let i = 0; i < files.length; i++) {
-                    fileNames.push(files[i].name);
-                }
-                alert(`Files selected: ${fileNames.join(', ')}\n\nNote: This is a demo. In a real implementation, files would be processed and stored.`);
-            }
-        }
-
-        // Quick add form handler
-        document.getElementById('quickAddForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (!isAdminLoggedIn) {
-                alert('Admin access required!');
-                return;
-            }
-            
-            const type = document.getElementById('contentType').value;
-            const title = document.getElementById('contentTitle').value;
-            const authors = document.getElementById('contentAuthors').value;
-            const description = document.getElementById('contentDescription').value;
-            const links = document.getElementById('contentLinks').value;
-            const pdfFile = document.getElementById('contentPDF').files[0];
-
-            const newItem = document.createElement('div');
-            newItem.className = 'paper-item';
-            
-            let linkHtml = '<div class="paper-links">';
-            
-            // Add PDF download if file is uploaded
-            if (pdfFile) {
-                const pdfUrl = URL.createObjectURL(pdfFile);
-                linkHtml += `<a href="${pdfUrl}" class="download-btn" download="${pdfFile.name}"><span>📥</span> Download</a>`;
-            }
-            
-            // Add other links
-            if (links) {
-                const linkArray = links.split(',').map(link => link.trim());
-                linkArray.forEach(link => {
-                    const linkName = link.includes('github') ? 'GitHub' : 
-                                   link.includes('doi') ? 'DOI' : 
-                                   link.includes('pdf') ? 'PDF' : 'Link';
-                    linkHtml += `<a href="${link}" class="paper-link" target="_blank">${linkName}</a>`;
-                });
-            }
-            linkHtml += '</div>';
-
-            newItem.innerHTML = `
-                <div class="paper-title">${title}</div>
-                <div class="paper-meta">${authors || `Added: ${new Date().toLocaleDateString()}`}</div>
-                <p>${description}</p>
-                ${linkHtml}
-            `;
-
-            if (type === 'paper') {
-                document.getElementById('papersList').appendChild(newItem);
-            } else {
-                document.getElementById('projectsList').appendChild(newItem);
-            }
-
-            // Reset form
-            document.getElementById('quickAddForm').reset();
-            alert('Content added successfully!');
-        });
-
-        // CV Update form handler
-        document.getElementById('cvUpdateForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (!isAdminLoggedIn) {
-                alert('Admin access required!');
-                return;
-            }
-            
-            const cvFile = document.getElementById('cvFile').files[0];
-            if (cvFile) {
-                const cvUrl = URL.createObjectURL(cvFile);
-                document.getElementById('cvDownloadLink').href = cvUrl;
-                document.getElementById('cvDownloadLink').download = cvFile.name;
-                document.getElementById('cvLastUpdated').textContent = new Date().toLocaleDateString();
-                alert('CV updated successfully!');
-                document.getElementById('cvUpdateForm').reset();
-            }
-        });
-
-        // Contact form handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            // Create mailto link
-            const mailtoLink = `mailto:abhishek.tiwari@university.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-            
-            window.location.href = mailtoLink;
-        });
-
-        // Edit content functionality (double-click to edit text content)
-        document.addEventListener('DOMContentLoaded', function() {
-            const editableElements = ['userName', 'userTitle', 'userInstitution', 'aboutText', 'contactEmail', 'contactPhone', 'contactOffice', 'contactAddress'];
-            
-            editableElements.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.addEventListener('dblclick', function() {
-                        const currentText = this.textContent;
-                        const input = document.createElement('input');
-                        input.type = 'text';
-                        input.value = currentText.startsWith('[') ? '' : currentText;
-                        input.style.width = '100%';
-                        input.style.padding = '5px';
-                        input.style.fontSize = window.getComputedStyle(this).fontSize;
-                        
-                        this.replaceWith(input);
-                        input.focus();
-                        
-                        input.addEventListener('blur', function() {
-                            element.textContent = this.value || currentText;
-                            this.replaceWith(element);
-                        });
-                        
-                        input.addEventListener('keypress', function(e) {
-                            if (e.key === 'Enter') {
-                                this.blur();
-                            }
-                        });
-                    });
-                }
-            });
-
-            // Profile image click to change
-            document.getElementById('profileImg').addEventListener('click', function() {
-                const newSrc = prompt('Enter new profile image URL:', this.src);
-                if (newSrc) {
-                    this.src = newSrc;
-                }
-            });
-        });
-    </script>
-        ...
-    <!-- Your last section, e.g., Contact, ends here -->
-    </div>
-
-    <script>
-        // Theme toggle functionality
-        function toggleTheme() {
-            // ...existing code...
-        }
-
-        // ...[LOTS OF EXISTING JAVASCRIPT CODE HERE]...
-
-        // ==== Add your blog JS code below (or anywhere inside this script block) ====
-
-        // Like/Dislike functionality for blogs
-        function likeBlog(btn) {
-            let count = btn.querySelector('span');
-            count.textContent = parseInt(count.textContent) + 1;
-        }
-        function dislikeBlog(btn) {
-            let count = btn.querySelector('span');
-            count.textContent = parseInt(count.textContent) + 1;
-        }
-
-        // Comment functionality for blogs
-        function addComment(event, form) {
-            event.preventDefault();
-            const input = form.querySelector('input');
-            const commentText = input.value.trim();
-            if (commentText) {
-                const commentsList = form.parentElement.querySelector('.comments-list');
-                const commentDiv = document.createElement('div');
-                commentDiv.textContent = commentText;
-                commentDiv.style.marginBottom = "6px";
-                commentsList.appendChild(commentDiv);
-                input.value = '';
-            }
-            return false;
-        }
-
-        // ==== End of your blog JS code ====
-
-         // Shrinking header on scroll
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 60) {
-        header.classList.add('shrunk');
-    } else {
-        header.classList.remove('shrunk');
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const current = body.getAttribute('data-theme');
+      const next = current === 'dark' ? '' : 'dark';
+      body.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
     }
-});
-    </script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.body.setAttribute('data-theme', saved);
+    });
+  </script>
 </body>
 </html>
